@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'screens/home_screen.dart';
-import 'screens/detail_screen.dart'; // Import the DetailScreen
+import 'screens/detail_screen.dart';
+import 'screens/login_screen.dart';
 import 'services/movie_service.dart';
+import 'providers/user_provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,17 +13,20 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Provider(
-      create: (context) =>
-          MovieService(), // Use Provider instead of ChangeNotifierProvider
+    return MultiProvider(
+      providers: [
+        Provider(create: (context) => MovieService()),
+        ChangeNotifierProvider(create: (context) => UserProvider()),
+      ],
       child: MaterialApp(
         title: 'Movie Series App',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        initialRoute: '/',
+        initialRoute: '/login',
         routes: {
-          '/': (context) => HomeScreen(),
+          '/login': (context) => LoginScreen(),
+          '/home': (context) => HomeScreen(),
           '/detail': (context) => DetailScreen(),
         },
       ),

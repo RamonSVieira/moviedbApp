@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../models/movie.dart';
 import '../services/movie_service.dart';
 import '../widgets/movie_item.dart';
+import '../providers/user_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -33,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Filmes e Séries'),
+        title: Text(Provider.of<UserProvider>(context).username),
       ),
       body: Column(
         children: [
