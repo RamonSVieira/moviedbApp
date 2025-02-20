@@ -15,6 +15,28 @@ class Movie {
     required this.genres,
   });
 
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'overview': overview,
+      'posterPath': posterPath,
+      'releaseDate': releaseDate,
+      'genres': genres.join(','),
+    };
+  }
+
+  factory Movie.fromMap(Map<String, dynamic> map) {
+    return Movie(
+      id: map['id'],
+      title: map['title'],
+      overview: map['overview'],
+      posterPath: map['posterPath'],
+      releaseDate: map['releaseDate'],
+      genres: (map['genres'] as String).split(','),
+    );
+  }
+
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
       id: json['id'],

@@ -6,7 +6,7 @@ import 'screens/login_screen.dart';
 import 'services/movie_service.dart';
 import 'providers/user_provider.dart';
 
-void main() {
+void main() async {
   runApp(MyApp());
 }
 
